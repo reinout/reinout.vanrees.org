@@ -1,0 +1,8 @@
+<ul>
+  {% for entry in entries %}
+  <li>
+    <a href="{{ entry.url }}">{{ entry.title }}</a>
+    ({{ entry.ymd }})
+  </li>
+  {% endfor %}
+</ul>

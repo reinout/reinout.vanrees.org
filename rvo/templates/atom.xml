@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<feed xmlns="http://www.w3.org/2005/Atom"
+      xmlns:dc="http://purl.org/dc/elements/1.1/"
+      xml:base="http://reinout.vanrees.org/" xml:lang="en">
+  <link rel="self"
+        href="http://reinout.vanrees.org/weblog/{{ feedfile }}" />
+  <link href="http://reinout.vanrees.org/weblog/"
+        rel="alternate" type="text/html" />
+
+  <div xmlns="http://www.w3.org/1999/xhtml">
+    <a href="http://www.atomenabled.org/feedvalidator/check.cgi?url=http://reinout.vanrees.org/weblog/{{ feedfile }}">
+      <img title="Validate my Atom feed" width="88"
+           height="31"
+           src="http://www.atomenabled.org/feedvalidator/images/valid-atom.png"
+           alt="[Valid Atom]" border="0px" />
+    </a>
+    <p>
+      <span>
+        This is an Atom formatted XML site feed. It is intended to be viewed in
+        a Newsreader or syndicated to another site. Please visit
+      </span>
+      <a href="http://www.atomenabled.org/">Atom Enabled</a>
+      <span>
+        for more info.
+      </span>
+    </p>
+  </div>
+
+  <title type="html">{{ title }}</title>
+  <subtitle>{{ subtitle }}</subtitle>
+  <updated>2009-04-04T21:44:00+01:00</updated>
+  <id>urn:syndication:a55644db8591c020bd38852775819a9a</id>
+
+  {% for entry in entries %}
+  <entry>
+    <title>{{ entry.title }}</title>
+    <link rel="alternate" type="text/html"
+          href="http://reinout.vanrees.org/{{ entry.url }}" />
+      <id>http://reinout.vanrees.org/{{ entry.url }}</id>
+      <author>
+        <name>Reinout van Rees</name>
+      </author>
+      <published>{{ entry.ymd }}T00:00:00+01:00</published>
+      <updated>{{ entry.last_modified }}:00+01:00</updated>
+
+      {% for tag in entry.tags %}
+      <category term="{{ tag }}" />
+      {% endfor %}
+
+      <content type="xhtml"
+               xml:base="http://reinout.vanrees.org/"
+               xml:lang="en-US"
+               xml:space="preserve">
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          {{ entry.atom_content }}
+        </div>
+      </content>
+
+    </entry>
+    {% endfor %}
+
+</feed>
+

@@ -1,0 +1,50 @@
+<html>
+  <head>
+    <title>Weblog statistics</title>
+  </head>
+  <body>
+    <div class="body">
+      <h1>Reinout van Rees' weblog statistics</h1>
+
+      <h2>Posts per year</h2>
+      <div>
+        <img src="{{ yeargraph }}" />
+      </div>
+      <!--
+      <table>
+        <tr>
+          <th>Year</th>
+          <th>Number of posts</th>
+        </tr>
+        {% for year in years %}
+        <tr>
+          <td>{{ year.name }}</td>
+          <td>{{ year.number }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      -->
+
+      <h2>Posts per month</h2>
+      <!--
+      <table>
+        <tr>
+          <th>Year/month</th>
+          <th>Number of posts</th>
+        </tr>
+        {% for month in months %}
+        <tr>
+          <td>{{ month.name }}</td>
+          <td>{{ month.number }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      <p>Top amount per month: {{ maximum }}</p>
+      -->
+      <div>
+        <img src="{{ monthgraph }}" />
+      </div>
+
+    </div>
+  </body>
+</html>
