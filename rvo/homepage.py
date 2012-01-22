@@ -22,6 +22,14 @@ def conditional_write(filename, new):
         print '.',
 
 
+def pathto(*args):
+    """Mock of sphinx' pathto() just for the homepage.
+
+    Otherwise we cannot re-use our sphinx templates.
+    """
+    return ''
+
+
 class Homepage(object):
     """Represents the homepage"""
 
@@ -38,7 +46,8 @@ class Homepage(object):
     @property
     def content(self):
         """Return rendered template, filled with content"""
-        return self.template.render(weblogsnippet=self.weblogsnippet)
+        return self.template.render(weblogsnippet=self.weblogsnippet,
+                                    pathto=pathto)
 
     @property
     def weblogsnippet(self):

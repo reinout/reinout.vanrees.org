@@ -241,14 +241,13 @@ class Entry(object):
 class Weblog(object):
     """Wrapper around weblog dir"""
 
-    def __init__(self, weblogdir):
-        self.weblogdir = weblogdir
+    def __init__(self, rootdir):
+        self.weblogdir = os.path.join(rootdir, 'source', 'weblog')
         if 'weblog' in self.weblogdir:
             self.name = "Reinout van Rees' weblog"
             self.subtitle = "Python, grok, books, history, faith, etc."
             self.base_url = 'http://reinout.vanrees.org/'
-            self.target_dir = os.path.join(self.weblogdir, '..', '..',
-                                           'build', 'html', 'weblog')
+            self.target_dir = os.path.join(rootdir, 'build', 'html', 'weblog')
         self.tags = {}
         self.years = []
         self.all = []
@@ -540,7 +539,7 @@ class Weblog(object):
 
 def main():
     if len(sys.argv) < 2:
-        print "Missing start dir of weblog"
+        print "Missing root dir of sphinx (with source/, build/ and so)"
         sys.exit(1)
     weblogdir = sys.argv[1]
     setup_for_plain_docutils()

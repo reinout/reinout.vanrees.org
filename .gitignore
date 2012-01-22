@@ -1,2 +1,10 @@
 etc
-
+bin/
+develop-eggs/
+docs/build/
+docs/copyover
+docs/source
+parts/
+rvo.egg-info/
+*.pyc
+.installed.cfg

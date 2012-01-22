@@ -31,11 +31,12 @@ clean:
 
 html:
 	mkdir -p build/html/weblog
-	../bin/create-weblog-pages source/weblog
+	../bin/create-weblog-pages .
 	../bin/create-sermonlog source/preken
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	../bin/create-homepage
 	../bin/create-sitemap
+	cp -r copyover/ build/html/
 
 copy:
 	cp -r ../www/* build/html

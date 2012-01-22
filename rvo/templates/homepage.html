@@ -1,198 +1,135 @@
-<html>
-  <head>
-    <title>Reinout van Rees' personal website</title>
-    <meta name="description" content="Personal website of Reinout van Rees. Python/zope/grok software developer.  Building/construction research.  Ligfietsen." />
-   <extra>
-     <link rel="openid.server"
-           href="http://www.myopenid.com/server" />
-     <link rel="openid.delegate"
-           href="http://reinout.myopenid.com" />
-     <link rel="openid2.local_id"
-           href="http://reinout.myopenid.com" />
-     <link rel="openid2.provider"
-           href="http://www.myopenid.com/server" />
-     <meta http-equiv="X-XRDS-Location"
-           content="http://www.myopenid.com/xrds?username=reinout.myopenid.com" />
-   </extra>
-   </head>
-  <body>
-    <div class="body">
-      <h1>Reinout van Rees' personal website</h1>
-      <div class="yui-g">
+{% extends "layout.html" %}
 
-        <div class="yui-u">
-          <div>
-            <img src="reinout_homepage.png"
-                 alt="Reinout van Rees" />
-          </div>
-          <div>
-            <a href="http://www.fourmilab.ch/hackdiet/online/">
-              <img style="border: 0px none ;"
-                   src="http://www.fourmilab.ch/cgi-bin/HackDietBadge?t=1&amp;b=53616J7465645W5WG574105J2159KWW00F0240K870FWK4J5K752QG5Q07169G7W23GW812FGF6802KQ524Q0192F0J6FK3269J0Q141J9W117G537Q12533G8G437K3739F4J7J"
-                   alt="The Hacker's Diet Online" />
-            </a>
-          </div>
-        </div>
+{% block title %}
+Reinout van Rees' personal website
+{% endblock %}
 
-        <div class="yui-u first">
-          <h2><a href="/weblog/">Weblog</a></h2>
-          {{ weblogsnippet }}
 
-          <h2>Meanwhile on other websites...</h2>
-          <p>I've got stuff spread out on lots of different sites.</p>
-          <dl>
-            <dt>
-              <a href="http://www.nelen-schuurmans.nl">
-                Nelen &amp; Schuurmans
-              </a>
-            </dt>
-            <dd>
-              My work: python/django software developer in a civil engineering
-              (water management) setting.  Great combination.
-            </dd>
+{% block extra_head %}
+<meta name="description"
+      content="Personal website of Reinout van Rees. Django/Python software developer.  Ligfietsen." />
+<link rel="openid.server"
+      href="http://www.myopenid.com/server" />
+<link rel="openid.delegate"
+      href="http://reinout.myopenid.com" />
+<link rel="openid2.local_id"
+      href="http://reinout.myopenid.com" />
+<link rel="openid2.provider"
+      href="http://www.myopenid.com/server" />
+<meta http-equiv="X-XRDS-Location"
+      content="http://www.myopenid.com/xrds?username=reinout.myopenid.com" />
+{% endblock %}
 
-            <dt>
-              <a rel="me" href="http://www.linkedin.com/in/reinoutvanrees">
-                LinkedIn
-              </a>
-            </dt>
-            <dd>
-              My educational and professional background
-            </dd>
+{% block everything %}
+<h1>Reinout van Rees' personal website</h1>
 
-            <dt>
-              <a rel="me" href="http://photos.reinout.vanrees.org">
-                Photos.reinout.vanrees.org
-              </a>
-            </dt>
-            <dd>
-              My main photo site (via Smugmug)
-            </dd>
+<div class="row">
+  <div class="span6">
 
-            <dt>
-              <a rel="me" href="http://www.flickr.com/photos/reinoutvanrees">
-                Flickr
-              </a>
-            </dt>
-            <dd>
-              My secondary/old photo site
-            </dd>
+    <p>
+      Todo todo todo todo todo todo todo todo todo todo todo todo todo
+      todo todo todo todo todo todo todo todo todo todo todo todo todo
+      todo todo todo todo todo todo todo todo todo todo todo todo todo
+      todo todo todo todo todo todo todo todo todo todo todo todo todo
+      todo todo todo todo todo todo todo todo todo todo todo todo todo
+      todo todo todo todo todo todo todo todo todo todo todo todo todo.
+    </p>
 
-            <dt>
-              <a rel="me" href="http://stackoverflow.com/users/27401/reinout-van-rees">
-                stackoverflow
-              </a>
-            </dt>
-            <dd>
-              IT question/answer website
-            </dd>
+    <h2><a href="/weblog/">Weblog</a></h2>
+    {{ weblogsnippet }}
+  </div>
 
-            <dt>
-              <a rel="me" href="http://careers.stackoverflow.com/reinout-van-rees">
-                careers.stackoverflow.com
-              </a>
-            </dt>
-            <dd>
-              My C.V. geared towards IT
-            </dd>
-
-            <dt>
-                <a rel="me" href="http://del.icio.us/reinout">
-                  Del.icio.us
-                </a>
-            </dt>
-            <dd>
-              Just an online set of bookmarks
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://twitter.com/reinoutvanrees">
-                Twitter
-              </a>
-            </dt>
-            <dd>
-              Micro blogging.  All the rage currently.  Yes, I do it too :-)
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://www.ohloh.net/accounts/3881">
-                Ohloh
-              </a>
-            </dt>
-            <dd>
-              Open source code contribution metrics
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://technorati.com/people/technorati/reinout">
-                Technorati
-              </a>
-            </dt>
-            <dd>
-              Blog interlinking service
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://youtube.com/user/rvanrees">
-                Youtube
-              </a>
-            </dt>
-            <dd>
-              Videos
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://reinout.blip.tv">
-                Blip.tv
-              </a>
-            </dt>
-            <dd>
-              Videos, too
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://rvanrees.hyves.nl">
-                Hyves
-              </a>
-            </dt>
-            <dd>
-              Hyves. Mostly Dutch social website.  <i>(niet dat ik er veel mee doe, trouwens)</i>
-            </dd>
-
-            <dt>
-              <a rel="me" href="http://friendfeed.com/reinout">
-                Friendfeed
-              </a>
-            </dt>
-            <dd>
-              Aggregation of various social websites, twitter, blogs, photo sites, etc.
-            </dd>
-
-            <dt>
-              <a rel="me"
-                 href="http://www.amazon.com/gp/registry/wishlist/9M1GUK1Q4J27">Amazon.com verlanglijst</a>
-            </dt>
-            <dd>
-              <b>Do something unexpected: give me a book from my amazon.com wishlist!</b>
-            </dd>
-
-            <dt>
-              <a href="http://gmpg.org/xfn">
-                <img src="/xfn-btn.gif"
-                     alt="XFN Friendly" />
-              </a>
-            </dt>
-            <dd>
-              This list is XFN friendly, meaning that you can programmatically
-              link the concept "Reinout van Rees" to all those various
-              websites above.  I'm all for computer-readable information, so I
-              <i>had</i> to do this :-)
-            </dd>
-
-          </dl>
-
-        </div>
-      </div>
+  <div class="span5">
+    <div>
+      <img src="reinout_ligfiets.jpg"
+           width="275"
+           height="462"
+           alt="Reinout met ligfiets" />
     </div>
-  </body>
-</html>
+    <h2>Less mass</h2>
+    <p>
+      My maximum was just short of 100kg. My goal is 80kg (and perhaps a
+      bit below).
+    </p>
+    <p>
+      <a href="http://www.fourmilab.ch/hackdiet/online/">
+        <img style="border: 0px none ;"
+             src="http://www.fourmilab.ch/cgi-bin/HackDietBadge?t=1&amp;b=53616J7465645W5WG574105J2159KWW00F0240K870FWK4J5K752QG5Q07169G7W23GW812FGF6802KQ524Q0192F0J6FK3269J0Q141J9W117G537Q12533G8G437K3739F4J7J"
+             alt="The Hacker's Diet Online" />
+      </a>
+    </p>
+  </div>
+
+  <div class="span5">
+
+    <h2>Meanwhile on other websites...</h2>
+    <p>I've got stuff spread out on lots of different sites.</p>
+    <dl>
+      <dt>
+        <a href="http://www.nelen-schuurmans.nl">
+          Nelen &amp; Schuurmans
+        </a>
+      </dt>
+      <dd>
+        My work: python/django software developer in a civil engineering
+        (water management) setting.  Great combination.
+      </dd>
+
+      <dt>
+        <a rel="me" href="http://www.linkedin.com/in/reinoutvanrees">
+          LinkedIn
+        </a>
+      </dt>
+      <dd>
+        My educational and professional background
+      </dd>
+
+      <dt>
+        <a rel="me" href="http://photos.reinout.vanrees.org">
+          Photos.reinout.vanrees.org
+        </a>
+      </dt>
+      <dd>
+        My main photo site (via Smugmug)
+      </dd>
+
+      <dt>
+        <a rel="me" href="http://stackoverflow.com/users/27401/reinout-van-rees">
+          stackoverflow
+        </a>
+      </dt>
+      <dd>
+        IT question/answer website
+      </dd>
+
+      <dt>
+        <a rel="me" href="http://twitter.com/reinoutvanrees">
+          Twitter
+        </a>
+      </dt>
+      <dd>
+        Micro blogging.  All the rage currently.  Yes, I do it too :-)
+      </dd>
+
+      <dt>
+        <a rel="me" href="http://rvanrees.hyves.nl">
+          Hyves
+        </a>
+      </dt>
+      <dd>
+        Hyves. Mostly Dutch social website.  <i>(niet dat ik er veel mee doe, trouwens)</i>
+      </dd>
+
+      <dt>
+        <a rel="me"
+           href="http://www.amazon.com/gp/registry/wishlist/9M1GUK1Q4J27">Amazon.com verlanglijst</a>
+      </dt>
+      <dd>
+        <b>Do something unexpected: give me a book from my amazon.com wishlist!</b>
+      </dd>
+    </dl>
+  </div>
+
+</div>
+
+{% endblock %}
