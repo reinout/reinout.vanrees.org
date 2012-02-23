@@ -157,6 +157,16 @@ class Tag(Bucket):
     def filename(self):
         return os.path.join(self.dir, 'tags/%s.txt' % self.name)
 
+    def create_file(self):
+        if not os.path.exists(self.filename):
+            # I sometimes make a mistake with a tag name and reverting it is a
+            # bit of a pain. So I want a warning when I create it.
+            print("Tag %s doesn't exist yet." % self.name)
+            answer = raw_input("Create it? (y/N)")
+            if answer != 'y':
+                sys.exit(1)
+        super(Tag, self).create_file()
+
     def __cmp__(self, other):
         return cmp(self.size, other.size)
 
