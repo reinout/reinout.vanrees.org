@@ -210,7 +210,8 @@ class Entry(object):
         by_date = cmp(other.ymd, self.ymd) # reverse
         if by_date:
             return by_date
-        return cmp(self.title, other.title)
+        # Hm. Same day. Now sort by (reverse) modification time.
+        return cmp(other.last_modified, self.last_modified)
 
     @property
     def ymd(self):
