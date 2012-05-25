@@ -387,6 +387,9 @@ class Weblog(object):
         atom_templ = jinja_env.get_template('atom.xml')
         # Main atom file
         last_10 = self.all[-10:]
+        # The next is a temp hack as I'm switching to a CDATA format.
+        last_10 = [entry for entry in last_10
+                   if entry.ymd >= '2012-05-25']
         last_10.reverse()
         target_name = os.path.join(self.target_dir, 'atom.xml')
         utf8_open(target_name, 'w').write(

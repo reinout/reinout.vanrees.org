@@ -47,13 +47,9 @@
       <category term="{{ tag }}" />
       {% endfor %}
 
-      <content type="xhtml"
-               xml:base="http://reinout.vanrees.org/"
-               xml:lang="en-US"
-               xml:space="preserve">
-        <div xmlns="http://www.w3.org/1999/xhtml">
-          {{ entry.atom_content }}
-        </div>
+      <content type="html"><![CDATA[
+        {{ entry.atom_content }}
+        ]]>
       </content>
 
     </entry>
