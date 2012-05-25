@@ -8,7 +8,7 @@
         rel="alternate" type="text/html" />
 
   <div xmlns="http://www.w3.org/1999/xhtml">
-    <a href="http://www.atomenabled.org/feedvalidator/check.cgi?url=http://reinout.vanrees.org/weblog/{{ feedfile }}">
+    <a href="http://www.atomenabled.org/feedvalidator/check.cgi?url=http%3A%2F%2Freinout.vanrees.org%2Fweblog%2F{{ feedfile }}">
       <img title="Validate my Atom feed" width="88"
            height="31"
            src="http://www.atomenabled.org/feedvalidator/images/valid-atom.png"
