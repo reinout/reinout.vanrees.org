@@ -231,7 +231,8 @@ class Entry(object):
     @property
     def url(self):
         """Return url relative to weblog root (excluding starting slash)"""
-        return self.filename.replace('.txt', '.html').replace('source/', '')
+        return self.filename.replace('.txt', '.html').replace(
+            'source/', '').replace('./weblog', 'weblog')
 
     @property
     def atom_content(self):
