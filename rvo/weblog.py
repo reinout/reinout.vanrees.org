@@ -344,7 +344,7 @@ class Weblog(object):
         result = []
         NUMBER = 10
         entries = self.all[-NUMBER:]
-        entries.reverse()
+        entries.sort()
         for entry in entries:
             parts = entry.filename.split('/')
             link = '/'.join(parts[-4:])
@@ -383,8 +383,6 @@ class Weblog(object):
 
     def create_atom(self):
         all = self.all
-        # The next is a temp hack as I'm switching to a CDATA format.
-        all = [entry for entry in all if entry.ymd >= '2012-05-25']
         all.sort()
         all.reverse()
         atom_templ = jinja_env.get_template('atom.xml')
