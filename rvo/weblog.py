@@ -382,14 +382,14 @@ class Weblog(object):
         return result
 
     def create_atom(self):
-        self.all.sort()
-        self.all.reverse()
+        all = self.all
+        # The next is a temp hack as I'm switching to a CDATA format.
+        all = [entry for entry in all if entry.ymd >= '2012-05-25']
+        all.sort()
+        all.reverse()
         atom_templ = jinja_env.get_template('atom.xml')
         # Main atom file
-        last_10 = self.all[-10:]
-        # The next is a temp hack as I'm switching to a CDATA format.
-        last_10 = [entry for entry in last_10
-                   if entry.ymd >= '2012-05-25']
+        last_10 = all[-10:]
         last_10.reverse()
         target_name = os.path.join(self.target_dir, 'atom.xml')
         utf8_open(target_name, 'w').write(
@@ -399,7 +399,7 @@ class Weblog(object):
                               feedfile='atom.xml',
                               entries=last_10))
         # Planet plone + planet zope
-        plone_entries = [entry for entry in self.all
+        plone_entries = [entry for entry in all
                          if 'plone' in entry.tags
                          or 'grok' in entry.tags
                          or 'python' in entry.tags
@@ -418,7 +418,7 @@ class Weblog(object):
                                   entries=plone_entries))
         # planet python
         # Planet plone
-        python_entries = [entry for entry in self.all
+        python_entries = [entry for entry in all
                           if 'plone' in entry.tags
                           or 'grok' in entry.tags
                           or 'python' in entry.tags
@@ -438,7 +438,7 @@ class Weblog(object):
                                   feedfile='pythonfeed.xml',
                                   entries=python_entries))
 
-        django_entries = [entry for entry in self.all
+        django_entries = [entry for entry in all
                           if 'django' in entry.tags
                           or 'book' in entry.tags
                           or 'djangocon' in entry.tags]
