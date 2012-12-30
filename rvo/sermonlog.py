@@ -116,6 +116,7 @@ class Sermonlog(object):
         for info_type in INFO_TYPES:
             if info_type in ['datum', 'toegevoegd', 'tekst']:
                 continue
+            dirname = INFO_TYPES[info_type].lower()
             title = INFO_TYPES[info_type]
             content.append(title)
             content.append('-' * len(title))
@@ -125,8 +126,9 @@ class Sermonlog(object):
             content.append('    :maxdepth: 1')
             content.append('')
             for info_item in sorted_by_size(info_items):
-                content.append('    %s (%s) <%s.txt>' % (
-                        info_item, len(info_items[info_item]), info_item))
+                content.append('    %s (%s) <%s/%s.txt>' % (
+                        info_item, len(info_items[info_item]),
+                        dirname, info_item))
             content.append('')
         conditional_write(total_index, '\n'.join(content))
 
@@ -156,9 +158,11 @@ class Sermonlog(object):
                 sermons = info_items[info_item]
                 sermons.sort()
                 for sermon in sermons:
-                    content.append('    %s' % sermon.full_link)
+                    content.append('    %s' % sermon.tag_link)
                 content.append('')
-                filename = os.path.join(self.sermonlogdir, info_item + '.txt')
+                filename = os.path.join(self.sermonlogdir,
+                                        INFO_TYPES[info_type].lower(),
+                                        info_item + '.txt')
                 conditional_write(filename, '\n'.join(content))
 
 
@@ -230,6 +234,12 @@ class Sermon(object):
     def full_link(self):
         """Return link from the sermonlog homepage."""
         return '%s: %s <%s/%s.txt>' % (
+            self.datum, self.title, self.year, self.name)
+
+    @property
+    def tag_link(self):
+        """Return link from a tag/church/whatever subdirectory."""
+        return '%s: %s <../%s/%s.txt>' % (
             self.datum, self.title, self.year, self.name)
 
     @property

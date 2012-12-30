@@ -5,7 +5,9 @@ from docutils.parsers.rst import Directive
 SMUGMUG = 'http://photos.reinout.vanrees.org'
 TAGLINK = '../../../tags/%s.html'
 ROOTTAGLINK = 'tags/%s.html'
-SERMONTAGLINK = '../%s.html'
+SERMONTAGLINK = '../tags/%s.html'
+SERMONREFERENTLINK = '../predikanten/%s.html'
+SERMONCHURHLINK = '../kerken/%s.html'
 
 
 def align(argument):
@@ -97,7 +99,6 @@ class SermonInfo(Directive):
                    'added': directives.unchanged,
                    'tags': directives.unchanged}
     has_content = False
-    taglink = SERMONTAGLINK
 
     def run(self):
         result = nodes.definition_list()
@@ -108,11 +109,14 @@ class SermonInfo(Directive):
             result += nodes.term(text=term)
             definition = nodes.definition()
             if option in ['kerk', 'predikant', 'tags']:
+                taglink = {'kerk': SERMONCHURHLINK,
+                           'predikant': SERMONREFERENTLINK,
+                           'tags': SERMONTAGLINK}[option]
                 value = self.options[option]
                 values = [value.strip() for value in value.split(',')]
                 paragraph = nodes.paragraph()
                 for i, value in enumerate(values):
-                    link = SERMONTAGLINK % value
+                    link = taglink % value
                     paragraph += nodes.reference(refuri=link, text=value)
                     if not i == len(values) - 1:
                         paragraph += nodes.inline(text=', ')
