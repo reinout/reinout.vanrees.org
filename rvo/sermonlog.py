@@ -101,7 +101,7 @@ class Sermonlog(object):
         content.append('.. toctree::')
         content.append('    :maxdepth: 1')
         content.append('')
-        for sermon in self.recent_five():
+        for sermon in self.recent_ten():
             content.append('    %s' % sermon.full_link)
         content.append('')
         content.append('Jaren')
@@ -132,12 +132,12 @@ class Sermonlog(object):
             content.append('')
         conditional_write(total_index, '\n'.join(content))
 
-    def recent_five(self):
-        """Return five most recent sermons."""
+    def recent_ten(self):
+        """Return ten most recent sermons."""
         two_recent_years = sorted(self.years.keys())[-2:]
         recent_years_entries = (self.years[two_recent_years[0]] +
                                 self.years[two_recent_years[1]])
-        most_recent = sorted(recent_years_entries)[-5:]
+        most_recent = sorted(recent_years_entries)[-10:]
         most_recent.reverse()
         return most_recent
 
