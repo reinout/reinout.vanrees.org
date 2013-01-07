@@ -420,7 +420,6 @@ class Weblog(object):
                           if 'plone' in entry.tags
                           or 'grok' in entry.tags
                           or 'python' in entry.tags
-                          or 'europython2009' in entry.tags
                           or 'buildout' in entry.tags
                           or 'django' in entry.tags
                           or 'pyramid' in entry.tags
