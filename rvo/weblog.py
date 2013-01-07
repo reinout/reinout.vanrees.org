@@ -401,7 +401,7 @@ class Weblog(object):
                          if 'plone' in entry.tags
                          or 'grok' in entry.tags
                          or 'python' in entry.tags
-                         or 'europython2009' in entry.tags
+                         or 'pyramid' in entry.tags
                          or 'buildout' in entry.tags
                          or 'zope' in entry.tags]
         if plone_entries: # Not in preken weblog ;-)
@@ -423,6 +423,7 @@ class Weblog(object):
                           or 'europython2009' in entry.tags
                           or 'buildout' in entry.tags
                           or 'django' in entry.tags
+                          or 'pyramid' in entry.tags
                           or 'djangocon' in entry.tags
                           or 'zope' in entry.tags]
         if python_entries: # Not in preken weblog ;-)
