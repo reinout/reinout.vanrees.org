@@ -8,3 +8,4 @@ parts/
 rvo.egg-info/
 *.pyc
 .installed.cfg
+buildout.cfg
