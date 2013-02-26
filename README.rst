@@ -1,4 +1,7 @@
 reinout.vanrees.org software
 ============================
 
-TODO
+Buildout will initially fail. Run the following command once to get symlinks
+set up::
+
+    $ bin/buildout install symlinks
