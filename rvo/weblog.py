@@ -438,6 +438,7 @@ class Weblog(object):
 
         django_entries = [entry for entry in all
                           if 'django' in entry.tags
+                          or 'python' in entry.tags
                           or 'book' in entry.tags
                           or 'djangocon' in entry.tags]
         if django_entries:
