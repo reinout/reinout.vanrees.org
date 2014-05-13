@@ -36,7 +36,8 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	../bin/create-homepage
 	../bin/create-sitemap
-	cp -r copyover/* build/html/
+	# cp -r copyover/* build/html/
+	rsync -rv copyover/* build/html/
 
 copy:
 	cp -r ../www/* build/html
