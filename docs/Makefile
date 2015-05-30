@@ -37,7 +37,7 @@ html:
 	../bin/create-homepage
 	../bin/create-sitemap
 	# cp -r copyover/* build/html/
-	rsync -rv copyover/* build/html/
+	rsync -rcv copyover/* build/html/
 
 copy:
 	cp -r ../www/* build/html
