@@ -204,10 +204,11 @@ class Entry(object):
             self.tags = [tag.strip() for tag in self.tags]
         # modification time
         self.last_modified = time.gmtime(os.path.getmtime(self.filename))
-        self.last_modified = time.strftime('%Y-%m-%dT%H:%M', self.last_modified)
+        self.last_modified = time.strftime('%Y-%m-%dT%H:%M',
+                                           self.last_modified)
 
     def __cmp__(self, other):
-        by_date = cmp(other.ymd, self.ymd) # reverse
+        by_date = cmp(other.ymd, self.ymd)  # reverse
         if by_date:
             return by_date
         # Hm. Same day. Now sort by (reverse) modification time.
@@ -240,7 +241,7 @@ class Entry(object):
         """Return rendered html for atom content"""
         # Filter out first two lines (title and underline)
         lines = self.lines[2:]
-        lines = [line for line in lines if not '.. tags::' in line]
+        lines = [line for line in lines if '.. tags::' not in line]
         # render to html
         html_writer = Writer()
         content = publish_parts('\n'.join(lines),
@@ -398,13 +399,13 @@ class Weblog(object):
                               entries=last_10))
         # Planet plone + planet zope
         plone_entries = [entry for entry in all
-                         if 'plone' in entry.tags
-                         or 'grok' in entry.tags
-                         or 'python' in entry.tags
-                         or 'pyramid' in entry.tags
-                         or 'buildout' in entry.tags
-                         or 'zope' in entry.tags]
-        if plone_entries: # Not in preken weblog ;-)
+                         if ('plone' in entry.tags
+                             or 'grok' in entry.tags
+                             or 'python' in entry.tags
+                             or 'pyramid' in entry.tags
+                             or 'buildout' in entry.tags
+                             or 'zope' in entry.tags)]
+        if plone_entries:  # Not in preken weblog ;-)
             plone_entries = plone_entries[-10:]
             plone_entries.reverse()
             target_name = os.path.join(self.target_dir, 'plonefeed.xml')
@@ -417,15 +418,15 @@ class Weblog(object):
         # planet python
         # Planet plone
         python_entries = [entry for entry in all
-                          if 'plone' in entry.tags
-                          or 'grok' in entry.tags
-                          or 'python' in entry.tags
-                          or 'buildout' in entry.tags
-                          or 'django' in entry.tags
-                          or 'pyramid' in entry.tags
-                          or 'djangocon' in entry.tags
-                          or 'zope' in entry.tags]
-        if python_entries: # Not in preken weblog ;-)
+                          if ('plone' in entry.tags
+                              or 'grok' in entry.tags
+                              or 'python' in entry.tags
+                              or 'buildout' in entry.tags
+                              or 'django' in entry.tags
+                              or 'pyramid' in entry.tags
+                              or 'djangocon' in entry.tags
+                              or 'zope' in entry.tags)]
+        if python_entries:  # Not in preken weblog ;-)
             python_entries = python_entries[-10:]
             python_entries.reverse()
             target_name = os.path.join(self.target_dir, 'pythonfeed.xml')
@@ -451,7 +452,6 @@ class Weblog(object):
                                   subtitle=self.subtitle,
                                   feedfile='djangofeed.xml',
                                   entries=django_entries))
-
 
     def create_for_homepage(self):
         """Create html snippet for inclusion in homepage"""
@@ -480,14 +480,13 @@ class Weblog(object):
         data = 'chd=t:%s' % ','.join([str(y['number']) for y in years])
         maxmin = 'chds=0,%d' % maximum
         type_ = 'cht=bvg'
-        #legend = 'chdl=posts+per+year'
+        # legend = 'chdl=posts+per+year'
         axis_def = 'chxt=x,y'
         x = '|'.join([str(y['name']) for y in years])
         axis_val = 'chxl=0:|%s|1:|0|%d' % (x, maximum)
-        #labels = 'chl=Hello|World'
+        # labels = 'chl=Hello|World'
         yeargraph = base + '&amp;'.join([size, colors, data, maxmin, type_,
                                          axis_def, axis_val])
-
 
         months = []
         for year in self.years:
@@ -538,7 +537,7 @@ class Weblog(object):
         x1 = '|'.join(x1)
         x2 = '|'.join(x2)
         axis_val = 'chxl=0:|%s|1:|%s|2:|0|%s' % (x1, x2, maximum)
-        #labels = 'chl=Hello|World'
+        # labels = 'chl=Hello|World'
         monthgraph = base + '&amp;'.join([size, colors, data, maxmin, type_,
                                           linestyle,
                                           legend, axis_def, axis_val])
@@ -549,7 +548,6 @@ class Weblog(object):
                                    months=months,
                                    maximum=maximum,
                                    monthgraph=monthgraph))
-
 
 
 def main():
