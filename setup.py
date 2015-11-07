@@ -3,7 +3,9 @@ from distutils.core import setup
 install_requires = [
     'Jinja2',
     'Sphinx',
+    'Sphinx',
     'docutils',
+    'pastescript',
     ]
 
 setup(name='rvo',
