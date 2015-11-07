@@ -47,3 +47,12 @@ TODO items so I can do to do away with the preprocessing:
 
 - For this, I need an accurate list, probably inside some sphinx memory
   structure, of blog posts and tags and their links.
+
+- My sphinx "app" registers directives and connects to two signals at the
+  moment. I should enhance this with other signals like ``doctree-read`` and
+  ``doctree-resolved``, I think. See ``ablog/__init__.py`` for examples. This
+  could do away with the custom scripts I have to call.
+
+  Actually... I could perhaps even use it to retain my ``index.txt``
+  generation, only now I fire it from within sphinx.... :-) For this, the
+  ``builder-inited`` event seems best.
