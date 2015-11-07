@@ -1,7 +1,47 @@
 reinout.vanrees.org software
 ============================
 
+Very specific too-much-hardcoded code to manage my http://reinout.vanrees.org
+website.
+
 Buildout will initially fail. Run the following command once to get symlinks
 set up::
 
     $ bin/buildout install symlinks
+
+
+Ideas for cleaning up my weblog code
+------------------------------------
+
+From time to time people ask me how I've made my blog with sphinx. Also
+because I've got the top rated answer on stackoverflow for the "weblog with
+sphinx" question: http://stackoverflow.com/a/1588720/27401 .
+
+Note: there's http://ablog.readthedocs.org/ that uses sphinx and looks quite
+polished. At least it is currently very much more reusable than my code :-)
+
+Ablog works by marking certain pages as blog posts. My code works from a
+``yyyy/mm/dd/entry.txt`` structure.
+
+At the "django under the hood 2015" sprint, Eric Holscher pointed me at ablog
+and also gave me some other tips.
+
+One of the not-standard-sphinx things I do is that I have a "preprocessor
+script" that generates ``index.txt`` files in all the subdirectories. It also
+generates a ``tags/tagname.txt`` file per tag. All of those files are just a
+title and a TOC pointing at the files.
+
+TODO items so I can do to do away with the preprocessing:
+
+- I can have a global TOC that automatically includes everything in my weblog
+  directory. Apparently there's a ``:glob:`` configuration option for TOC, so
+  I probably can put ``*/*/*/*.txt`` in there and delete all my ``index.txt``
+  files.
+
+- Instead of creating ``index.txt`` and tag "input files" beforehand and letting
+  Sphinx take care of the rest, I can also generate "output files". So
+  programmatically insert docs and nodes (or whatever the sphinx terminology
+  is) into the doctree and let sphinx render it to the output html directory!
+
+- For this, I need an accurate list, probably inside some sphinx memory
+  structure, of blog posts and tags and their links.
