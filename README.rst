@@ -21,7 +21,9 @@ Note: there's http://ablog.readthedocs.org/ that uses sphinx and looks quite
 polished. At least it is currently very much more reusable than my code :-)
 
 Ablog works by marking certain pages as blog posts. My code works from a
-``yyyy/mm/dd/entry.txt`` structure.
+``yyyy/mm/dd/entry.txt`` structure. Ablog also seems to "take over" your
+entire sphinx site instead of my code, that hardcodes itself neatly into some
+corner :-)
 
 At the "django under the hood 2015" sprint, Eric Holscher pointed me at ablog
 and also gave me some other tips.
