@@ -1,12 +1,5 @@
 """Script to create index, date and tag pages.
 """
-# import datetime
-# import os
-# import sys
-# import time
-
-# from docutils.core import publish_parts
-# from docutils.writers.html4css1 import Writer
 from jinja2 import Environment
 from jinja2 import PackageLoader
 

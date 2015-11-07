@@ -14,7 +14,6 @@ from jinja2 import PackageLoader
 from rvo.rst import setup_for_plain_docutils
 
 TAGSTART = '.. tags::'
-TECHNORATI_TAGS = ['europython2009']
 
 
 jinja_env = Environment(loader=PackageLoader('rvo', 'templates'))

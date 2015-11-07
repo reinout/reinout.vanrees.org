@@ -129,16 +129,6 @@ class SermonInfo(Directive):
         return [result]
 
 
-# gallery
-# http://photos.reinout.vanrees.org/Vacation/2009-cycling-vechtdalroute/
-# 9255700_R2ZDx/1/618290283_v2gri
-# lightbox
-# http://photos.reinout.vanrees.org/Vacation/2009-cycling-vechtdalroute
-# /9255700_R2ZDx/1/#618290283_v2gri-A-LB
-# medium img
-# http://photos.reinout.vanrees.org/photos/618290283_v2gri-M.jpg
-
-
 def breadcrumbs(app, pagename, templatename, context, doctree):
     """Inject the main menu into the context
 

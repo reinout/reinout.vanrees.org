@@ -37,6 +37,8 @@ class FileInfo(object):
         if self.path in ['/index.html',
                          '/weblog/index.html']:
             return 'hourly'
+        # TODO: weblog entries of the last two days should be set to hourly,
+        # too.
         return 'monthly'
 
 
