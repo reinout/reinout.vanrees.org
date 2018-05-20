@@ -222,15 +222,15 @@ class Entry(object):
             # We're definitively newer!
             return True
         # Hm. Same day. Now look at the (reverse) modification time.
-        # TODO: perhaps adjust this to use numbers in filenames... Handy for
-        # conferences.
-        return self.last_modified < other.last_modified
+        # return self.last_modified < other.last_modified
+        return other.filename < self.filename
 
     def __eq__(self, other):
         if (other.ymd != self.ymd):
             return False
         # Same day, so it looks equal. Now look at the modification time.
-        return other.last_modified == self.last_modified
+        # return other.last_modified == self.last_modified
+        return other.filename == self.filename
 
     @property
     def ymd(self):
