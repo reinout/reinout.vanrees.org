@@ -8,6 +8,10 @@ Install everything initially with::
 
   $ make install
 
+The actual making of the sphinx documentation is done with a ``make html``
+inside the docs directory. I do this normally by calling ``makedocs`` (from my
+"tools" repo, whose scripts are installed globally).
+
 
 Ideas for cleaning up my weblog code
 ------------------------------------
