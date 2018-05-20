@@ -12,7 +12,7 @@ def conditional_write(filename, new):
     old = open(filename, 'r').read()
     if new != old:
         utf8_open(filename, 'w').write(new)
-        print '.',
+        print('.')
 
 
 def pathto(*args):

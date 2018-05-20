@@ -3,7 +3,7 @@
 
 # You can set these variables from the command line.
 SPHINXOPTS    =
-SPHINXBUILD   = ../bin/sphinx-build
+SPHINXBUILD   = pipenv run sphinx-build
 PAPER         =
 
 # Internal variables.
@@ -31,12 +31,11 @@ clean:
 
 html:
 	mkdir -p build/html/weblog
-	../bin/create-weblog-pages .
-	../bin/create-sermonlog source/preken
+	pipenv run create-weblog-pages .
+	pipenv run create-sermonlog source/preken
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
-	../bin/create-homepage
-	../bin/create-sitemap
-	# cp -r copyover/* build/html/
+	pipenv run create-homepage
+	pipenv run create-sitemap
 	rsync -rcv copyover/* build/html/
 
 copy:

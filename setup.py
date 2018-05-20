@@ -5,7 +5,7 @@ install_requires = [
     'Sphinx',
     'Sphinx',
     'docutils',
-    'pastescript',
+    # 'pastescript',
     ]
 
 setup(name='rvo',

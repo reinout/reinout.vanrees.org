@@ -6,6 +6,7 @@ import sys
 import time
 import datetime
 
+from functools import total_ordering
 from rvo.rst import setup_for_plain_docutils
 from rvo.weblog import utf8_open
 from rvo.weblog import conditional_write
@@ -166,6 +167,7 @@ class Sermonlog(object):
                 conditional_write(filename, '\n'.join(content))
 
 
+@total_ordering
 class Sermon(object):
     """Extracted info from one sermon *.txt file."""
 
@@ -182,9 +184,11 @@ class Sermon(object):
                                            self.last_modified)
         self.extract_info()
 
-    def __cmp__(self, other):
-        """Sort by date, which is the filename."""
-        return cmp(self.datum, other.datum)
+    def __lt__(self, other):
+        return self.datum < other.datum
+
+    def __eq__(self, other):
+        return self.datum == other.datum
 
     def extract_info(self):
         for info_type in INFO_TYPES:
@@ -252,7 +256,7 @@ class Sermon(object):
 def main():
     logging.basicConfig(level=logging.DEBUG)
     if len(sys.argv) < 2:
-        print "Missing start dir of weblog"
+        print("Missing start dir of weblog")
         sys.exit(1)
     sermonlogdir = sys.argv[1]
     setup_for_plain_docutils()

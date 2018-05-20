@@ -4,10 +4,9 @@ reinout.vanrees.org software
 Very specific too-much-hardcoded code to manage my http://reinout.vanrees.org
 website.
 
-Buildout will initially fail. Run the following command once to get symlinks
-set up::
+Install everything initially with::
 
-    $ bin/buildout install symlinks
+  $ make install
 
 
 Ideas for cleaning up my weblog code

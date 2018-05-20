@@ -6,6 +6,7 @@ import os
 import sys
 import time
 
+from functools import total_ordering
 from docutils.core import publish_parts
 from docutils.writers.html4css1 import Writer
 from jinja2 import Environment
@@ -30,7 +31,7 @@ def conditional_write(filename, new):
         old = None
     if new != old:
         utf8_open(filename, 'w').write(new)
-        print '.',
+        print('.')
 
 
 class Bucket(object):
@@ -148,6 +149,7 @@ class Day(Bucket):
         return "%s-%s-%s" % (year, month, self.name)
 
 
+@total_ordering
 class Tag(Bucket):
     """A tag contains entries"""
     sort_entries = True
@@ -166,8 +168,11 @@ class Tag(Bucket):
                 sys.exit(1)
         super(Tag, self).create_file()
 
-    def __cmp__(self, other):
-        return cmp(self.size, other.size)
+    def __lt__(self, other):
+        return self.size < other.size
+
+    def __eq__(self, other):
+        return self.size == other.size
 
     def subitems(self):
         """Return link block at the start of the page"""
@@ -184,6 +189,7 @@ class Tag(Bucket):
         return result
 
 
+@total_ordering
 class Entry(object):
     """Extracted info from weblog entry *.txt file.
 
@@ -206,12 +212,25 @@ class Entry(object):
         self.last_modified = time.strftime('%Y-%m-%dT%H:%M',
                                            self.last_modified)
 
-    def __cmp__(self, other):
-        by_date = cmp(other.ymd, self.ymd)  # reverse
-        if by_date:
-            return by_date
-        # Hm. Same day. Now sort by (reverse) modification time.
-        return cmp(other.last_modified, self.last_modified)
+    def __lt__(self, other):
+        # Note: we want everything ordered with the *newest* on top.
+        # So "less than" means "we're less new"
+        if self.ymd < other.ymd:
+            # We're older, so "less new".
+            return False
+        if self.ymd > other.ymd:
+            # We're definitively newer!
+            return True
+        # Hm. Same day. Now look at the (reverse) modification time.
+        # TODO: perhaps adjust this to use numbers in filenames... Handy for
+        # conferences.
+        return self.last_modified < other.last_modified
+
+    def __eq__(self, other):
+        if (other.ymd != self.ymd):
+            return False
+        # Same day, so it looks equal. Now look at the modification time.
+        return other.last_modified == self.last_modified
 
     @property
     def ymd(self):
@@ -330,7 +349,7 @@ class Weblog(object):
         content.append('.. toctree::')
         content.append('    :maxdepth: 1')
         content.append('')
-        tags = self.tags.values()
+        tags = list(self.tags.values())
         tags.sort(reverse=True)
         for tag in tags:
             content.append('    %s (%s) <%s.txt>' % (
@@ -551,7 +570,7 @@ class Weblog(object):
 
 def main():
     if len(sys.argv) < 2:
-        print "Missing root dir of sphinx (with source/, build/ and so)"
+        print("Missing root dir of sphinx (with source/, build/ and so)")
         sys.exit(1)
     weblogdir = sys.argv[1]
     setup_for_plain_docutils()
