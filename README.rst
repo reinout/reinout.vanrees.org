@@ -8,9 +8,14 @@ Install everything initially with::
 
   $ make install
 
+This install also adds some symlinks to the separate (and private!)
+``../websitecontent/`` directory. For privacy reasons, the ansible
+provision/deploy scripts and the nginx config files are in that private repo.
+
 The actual making of the sphinx documentation is done with a ``make html``
 inside the docs directory. I do this normally by calling ``makedocs`` (from my
 "tools" repo, whose scripts are installed globally).
+
 
 
 Ideas for cleaning up my weblog code
