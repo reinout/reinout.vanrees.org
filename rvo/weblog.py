@@ -163,7 +163,7 @@ class Tag(Bucket):
             # I sometimes make a mistake with a tag name and reverting it is a
             # bit of a pain. So I want a warning when I create it.
             print("Tag %s doesn't exist yet." % self.name)
-            answer = raw_input("Create it? (y/N)")
+            answer = input("Create it? (y/N)")
             if answer != 'y':
                 sys.exit(1)
         super(Tag, self).create_file()
