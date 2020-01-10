@@ -9,7 +9,7 @@ Install everything initially with::
   $ make install
 
 This install also adds some symlinks to the separate (and private!)
-``../websitecontent/`` directory. For privacy reasons, the ansible
+``../rvo-websitecontent/`` directory. For privacy reasons, the ansible
 provision/deploy scripts and the nginx config files are in that private repo.
 
 The actual making of the sphinx documentation is done with a ``make html``
