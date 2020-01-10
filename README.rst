@@ -1,7 +1,7 @@
 reinout.vanrees.org software
 ============================
 
-Very specific too-much-hardcoded code to manage my http://reinout.vanrees.org
+Very specific too-much-hardcoded code to manage my https://reinout.vanrees.org
 website.
 
 Install everything initially with::
