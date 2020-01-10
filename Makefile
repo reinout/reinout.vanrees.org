@@ -1,10 +1,7 @@
 install: install_symlinks install_python
 
 
-install_symlinks: etc docs/copyover docs/source	rvo/templates/layout.html
-
-etc:
-	ln -s ../websitecontent/etc etc
+install_symlinks: docs/copyover docs/source	rvo/templates/layout.html
 
 docs/copyover:
 	ln -s ../../websitecontent/copyover docs/copyover
