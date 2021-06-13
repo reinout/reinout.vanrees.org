@@ -4,7 +4,7 @@ import time
 from jinja2 import Environment
 from jinja2 import PackageLoader
 
-jinja_env = Environment(loader=PackageLoader('rvo', 'templates'))
+jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
 
 
 class FileInfo(object):
@@ -12,58 +12,58 @@ class FileInfo(object):
 
     def __init__(self, dirpath, filename):
         fullpath = os.path.join(dirpath, filename)
-        self.path = dirpath.replace('build/html', '')
-        self.path = self.path + '/' + filename
+        self.path = dirpath.replace("build/html", "")
+        self.path = self.path + "/" + filename
         self.last_modified = time.gmtime(os.path.getmtime(fullpath))
-        self.last_modified = time.strftime('%Y-%m-%d', self.last_modified)
+        self.last_modified = time.strftime("%Y-%m-%d", self.last_modified)
 
     @property
     def priority(self):
-        if '/weblog/tags' in self.path:
-            return '0.1'
-        if self.path in ['/index.html',
-                         '/weblog/index.html']:
-            return '1.0'
-        if '/me/' in self.path:
-            return '0.8'
-        if '/bc/' in self.path:
-            return '0.8'
-        if '/ligfiets/' in self.path:
-            return '0.9'
-        return '0.5'
+        if "/weblog/tags" in self.path:
+            return "0.1"
+        if self.path in ["/index.html", "/weblog/index.html"]:
+            return "1.0"
+        if "/me/" in self.path:
+            return "0.8"
+        if "/bc/" in self.path:
+            return "0.8"
+        if "/ligfiets/" in self.path:
+            return "0.9"
+        return "0.5"
 
     @property
     def changefreq(self):
-        if self.path in ['/index.html',
-                         '/weblog/index.html']:
-            return 'hourly'
+        if self.path in ["/index.html", "/weblog/index.html"]:
+            return "hourly"
         # TODO: weblog entries of the last two days should be set to hourly,
         # too.
-        return 'monthly'
+        return "monthly"
 
 
 def files():
-    for dirpath, dirnames, filenames in os.walk('build/html'):
-        if '_sources' in dirpath:
+    for dirpath, dirnames, filenames in os.walk("build/html"):
+        if "_sources" in dirpath:
             continue
-        if '_static' in dirpath:
+        if "_static" in dirpath:
             continue
-        if '.svn' in dirpath:
+        if ".svn" in dirpath:
             continue
         for filename in filenames:
-            if filename in ['favicon.ico',
-                            'genindex.html',
-                            'objects.inv',
-                            'search.html',
-                            '.buildinfo',
-                            '.DS_Store',
-                            'searchindex.js']:
+            if filename in [
+                "favicon.ico",
+                "genindex.html",
+                "objects.inv",
+                "search.html",
+                ".buildinfo",
+                ".DS_Store",
+                "searchindex.js",
+            ]:
                 continue
             yield FileInfo(dirpath, filename)
 
 
 def main():
-    outfile = open('build/html/sitemap.xml', 'w')
-    sitemap_templ = jinja_env.get_template('sitemap.xml')
+    outfile = open("build/html/sitemap.xml", "w")
+    sitemap_templ = jinja_env.get_template("sitemap.xml")
     outfile.write(sitemap_templ.render(files=files()))
     outfile.close()

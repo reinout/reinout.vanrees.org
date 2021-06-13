@@ -5,14 +5,14 @@ from jinja2 import PackageLoader
 
 from rvo.weblog import utf8_open
 
-jinja_env = Environment(loader=PackageLoader('rvo', 'templates'))
+jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
 
 
 def conditional_write(filename, new):
-    old = open(filename, 'r').read()
+    old = open(filename, "r").read()
     if new != old:
-        utf8_open(filename, 'w').write(new)
-        print('.')
+        utf8_open(filename, "w").write(new)
+        print(".")
 
 
 def pathto(*args):
@@ -20,14 +20,14 @@ def pathto(*args):
 
     Otherwise we cannot re-use our sphinx templates.
     """
-    return ''
+    return ""
 
 
 class Homepage(object):
     """Represents the homepage"""
 
-    template = jinja_env.get_template('homepage.html')
-    outfile = 'build/html/index.html'
+    template = jinja_env.get_template("homepage.html")
+    outfile = "build/html/index.html"
 
     def __init__(self):
         pass
@@ -39,12 +39,11 @@ class Homepage(object):
     @property
     def content(self):
         """Return rendered template, filled with content"""
-        return self.template.render(weblogsnippet=self.weblogsnippet,
-                                    pathto=pathto)
+        return self.template.render(weblogsnippet=self.weblogsnippet, pathto=pathto)
 
     @property
     def weblogsnippet(self):
-        return utf8_open('build/html/weblog/snippet.html').read()
+        return utf8_open("build/html/weblog/snippet.html").read()
 
 
 def main():
