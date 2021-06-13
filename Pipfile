@@ -5,7 +5,7 @@ name = "pypi"
 
 [packages]
 e1839a8 = {path = ".",editable = true}
-rvo = {editable = true,path = "."}
+rvo = {editable = true, path = "."}
 
 [dev-packages]
 "flake8" = "*"
