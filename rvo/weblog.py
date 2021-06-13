@@ -507,18 +507,23 @@ class Weblog(object):
                                          axis_def, axis_val])
 
         months = []
+        MONTH_NAMES = [str(i + 1) for i in range(12)]
         for year in self.years:
-            months += [dict(name=' '.join([month.name, year.name]),
-                            month=month.name,
-                            year=year.name,
-                            number=len(month))
-                       for month in year.items]
-            # Special case: dec 2005... that one is missing.
-            if year.name == '2005':
-                months.append(dict(name='12 2005',
-                                   month='12',
-                                   year='2005',
+            available_months = {month.name: month for month in year.items}
+            for month_name in MONTH_NAMES:
+                if month_name in available_months:
+                    month = available_months[month_name]
+                    months.append(dict(name=' '.join([month.name, year.name]),
+                                   month=month.name,
+                                    year=year.name,
+                                number=len(month)))
+                else:
+                    # Empty month...
+                    months.append(dict(name='%s %s' % (month_name, year.name),
+                                   month=month_name,
+                                   year=year.name,
                                    number=0))
+
         average = float(months[0]['number'])
         ratio = 0.2
         maximum = 0
