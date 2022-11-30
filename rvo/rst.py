@@ -139,7 +139,6 @@ def breadcrumbs(app, pagename, templatename, context, doctree):
     """
     master_doc = context["master_doc"]
     pathto = context["pathto"]
-    # env = app.builder.env
     result = []
     result.append({"title": "Home", "url": pathto(master_doc)})
     if not pagename:

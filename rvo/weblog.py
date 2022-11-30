@@ -225,14 +225,12 @@ class Entry:
             # We're definitively newer!
             return True
         # Hm. Same day. Now look at the (reverse) modification time.
-        # return self.last_modified < other.last_modified
         return other.filename < self.filename
 
     def __eq__(self, other):
         if other.ymd != self.ymd:
             return False
         # Same day, so it looks equal. Now look at the modification time.
-        # return other.last_modified == self.last_modified
         return other.filename == self.filename
 
     @property
@@ -527,11 +525,9 @@ class Weblog:
         data = "chd=t:%s" % ",".join([str(y["number"]) for y in years])
         maxmin = "chds=0,%d" % maximum
         type_ = "cht=bvg"
-        # legend = 'chdl=posts+per+year'
         axis_def = "chxt=x,y"
         x = "|".join([str(y["name"]) for y in years])
         axis_val = "chxl=0:|%s|1:|0|%d" % (x, maximum)
-        # labels = 'chl=Hello|World'
         yeargraph = base + "&amp;".join(
             [size, colors, data, maxmin, type_, axis_def, axis_val]
         )
@@ -598,7 +594,6 @@ class Weblog:
         x1 = "|".join(x1)
         x2 = "|".join(x2)
         axis_val = "chxl=0:|%s|1:|%s|2:|0|%s" % (x1, x2, maximum)
-        # labels = 'chl=Hello|World'
         monthgraph = base + "&amp;".join(
             [size, colors, data, maxmin, type_, linestyle, legend, axis_def, axis_val]
         )
