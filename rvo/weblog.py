@@ -5,12 +5,11 @@ import datetime
 import os
 import sys
 import time
-
 from functools import total_ordering
+
 from docutils.core import publish_parts
 from docutils.writers.html4css1 import Writer
-from jinja2 import Environment
-from jinja2 import PackageLoader
+from jinja2 import Environment, PackageLoader
 
 from rvo.rst import setup_for_plain_docutils
 

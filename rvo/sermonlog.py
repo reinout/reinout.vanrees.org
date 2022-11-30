@@ -1,15 +1,14 @@
 """Script to create my /preken overview"""
 import collections
+import datetime
 import logging
 import os
 import sys
 import time
-import datetime
-
 from functools import total_ordering
+
 from rvo.rst import setup_for_plain_docutils
-from rvo.weblog import utf8_open
-from rvo.weblog import conditional_write
+from rvo.weblog import conditional_write, utf8_open
 
 logger = logging.getLogger(__name__)
 

@@ -1,6 +1,5 @@
 from docutils import nodes
-from docutils.parsers.rst import directives
-from docutils.parsers.rst import Directive
+from docutils.parsers.rst import Directive, directives
 
 SMUGMUG = "http://photos.reinout.vanrees.org"
 TAGLINK = "../../../tags/%s.html"

@@ -1,8 +1,7 @@
 import os
 import time
 
-from jinja2 import Environment
-from jinja2 import PackageLoader
+from jinja2 import Environment, PackageLoader
 
 jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
 

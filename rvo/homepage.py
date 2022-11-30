@@ -1,7 +1,6 @@
 """Script to create index, date and tag pages.
 """
-from jinja2 import Environment
-from jinja2 import PackageLoader
+from jinja2 import Environment, PackageLoader
 
 from rvo.weblog import utf8_open
 
