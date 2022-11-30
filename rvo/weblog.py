@@ -203,7 +203,7 @@ class Entry:
 
     def __init__(self, filepath):
         self.filename = filepath
-        self.lines = utf8_open(filepath).read().split(u"\n")
+        self.lines = utf8_open(filepath).read().split("\n")
         self.title = self.lines[0].strip()
         tagline = [line for line in self.lines if TAGSTART in line]
         self.tags = []

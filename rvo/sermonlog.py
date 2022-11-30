@@ -177,7 +177,7 @@ class Sermon:
         self.year = year
         self.name = filename[:-4]
         self.filename = os.path.join(directory, filename)
-        self.lines = utf8_open(self.filename).read().split(u"\n")
+        self.lines = utf8_open(self.filename).read().split("\n")
         self.title = self.lines[0].strip()
         # Modification time
         self.last_modified = time.gmtime(os.path.getmtime(self.filename))
