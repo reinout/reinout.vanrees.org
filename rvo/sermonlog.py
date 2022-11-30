@@ -31,7 +31,7 @@ def sorted_by_size(dictionary):
     return [key for key, size in keys_and_size]
 
 
-class Sermonlog(object):
+class Sermonlog:
     """Wrapper around sermon directory."""
 
     def __init__(self, sermonlogdir):
@@ -170,7 +170,7 @@ class Sermonlog(object):
 
 
 @total_ordering
-class Sermon(object):
+class Sermon:
     """Extracted info from one sermon *.txt file."""
 
     def __init__(self, year, directory, filename):

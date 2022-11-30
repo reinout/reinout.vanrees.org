@@ -6,7 +6,7 @@ from jinja2 import Environment, PackageLoader
 jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
 
 
-class FileInfo(object):
+class FileInfo:
     """Wrapper around filesystem file: collects info"""
 
     def __init__(self, dirpath, filename):

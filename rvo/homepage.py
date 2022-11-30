@@ -8,7 +8,7 @@ jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
 
 
 def conditional_write(filename, new):
-    old = open(filename, "r").read()
+    old = open(filename).read()
     if new != old:
         utf8_open(filename, "w").write(new)
         print(".")
@@ -22,7 +22,7 @@ def pathto(*args):
     return ""
 
 
-class Homepage(object):
+class Homepage:
     """Represents the homepage"""
 
     template = jinja_env.get_template("homepage.html")

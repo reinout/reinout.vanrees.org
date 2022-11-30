@@ -33,7 +33,7 @@ def conditional_write(filename, new):
         print(".")
 
 
-class Bucket(object):
+class Bucket:
     """A bucket of entries (tag/day) or other buckets (year/month)"""
 
     tocdepth = 1
@@ -169,7 +169,7 @@ class Tag(Bucket):
             answer = input("Create it? (y/N)")
             if answer != "y":
                 sys.exit(1)
-        super(Tag, self).create_file()
+        super().create_file()
 
     def __lt__(self, other):
         return self.size < other.size
@@ -192,7 +192,7 @@ class Tag(Bucket):
 
 
 @total_ordering
-class Entry(object):
+class Entry:
     """Extracted info from weblog entry *.txt file.
 
     We need the path, the title and the tags.
@@ -272,7 +272,7 @@ class Entry(object):
         return html
 
 
-class Weblog(object):
+class Weblog:
     """Wrapper around weblog dir"""
 
     def __init__(self, rootdir):
