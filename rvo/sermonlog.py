@@ -242,7 +242,9 @@ class Sermon:
     @property
     def tag_link(self):
         """Return link from a tag/church/whatever subdirectory."""
-        return "{}: {} <../{}/{}.txt>".format(self.datum, self.title, self.year, self.name)
+        return "{}: {} <../{}/{}.txt>".format(
+            self.datum, self.title, self.year, self.name
+        )
 
     @property
     def year_link(self):
