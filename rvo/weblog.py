@@ -14,6 +14,8 @@ from jinja2 import Environment, PackageLoader
 from rvo.rst import setup_for_plain_docutils
 
 TAGSTART = ".. tags::"
+NUM_RECENT_ENTRIES = 10
+MONTH_NAMES = [str(i + 1) for i in range(12)]
 
 
 jinja_env = Environment(loader=PackageLoader("rvo", "templates"))
@@ -363,8 +365,7 @@ class Weblog:
     def subitems(self):
         """Show most recent weblog entries"""
         result = []
-        NUMBER = 10
-        entries = self.all[-NUMBER:]
+        entries = self.all[-NUM_RECENT_ENTRIES:]
         entries.sort()
         for entry in entries:
             parts = entry.filename.split("/")
@@ -536,7 +537,6 @@ class Weblog:
         )
 
         months = []
-        MONTH_NAMES = [str(i + 1) for i in range(12)]
         for year in self.years:
             available_months = {month.name: month for month in year.items}
             for month_name in MONTH_NAMES:
