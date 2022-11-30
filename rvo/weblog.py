@@ -286,7 +286,7 @@ class Weblog:
         self.years = []
         self.all = []
 
-    def assign_entries(self):
+    def assign_entries(self):  # noqa: C901
         """Assign all found entries to their year and tag"""
         for yearname in sorted(os.listdir(self.weblogdir)):
             try:
