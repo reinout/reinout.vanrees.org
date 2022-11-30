@@ -40,7 +40,7 @@ class FileInfo:
 
 
 def files():
-    for dirpath, dirnames, filenames in os.walk("build/html"):
+    for dirpath, _dirnames, filenames in os.walk("build/html"):
         if "_sources" in dirpath:
             continue
         if "_static" in dirpath:
