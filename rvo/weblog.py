@@ -284,7 +284,7 @@ class Weblog:
             self.target_dir = os.path.join(rootdir, "build", "html", "weblog")
         self.tags = {}
         self.years = []
-        self.all = []
+        self.all_entries = []
 
     def assign_entries(self):  # noqa: C901
         """Assign all found entries to their year and tag"""
@@ -320,7 +320,7 @@ class Weblog:
                             entry = Entry(path)
                             entry.assign_to_tags(self.tags, self.weblogdir)
                             day.append(entry)
-                            self.all.append(entry)
+                            self.all_entries.append(entry)
 
     def create_files(self):
         for tag in self.tags.values():
@@ -363,7 +363,7 @@ class Weblog:
     def subitems(self):
         """Show most recent weblog entries"""
         result = []
-        entries = self.all[-NUM_RECENT_ENTRIES:]
+        entries = self.all_entries[-NUM_RECENT_ENTRIES:]
         entries.sort()
         for entry in entries:
             parts = entry.filename.split("/")
@@ -404,12 +404,12 @@ class Weblog:
         return result
 
     def create_atom(self):
-        all = self.all
-        all.sort()
-        all.reverse()
+        all_entries = self.all_entries
+        all_entries.sort()
+        all_entries.reverse()
         atom_templ = jinja_env.get_template("atom.xml")
         # Main atom file
-        last_10 = all[-10:]
+        last_10 = all_entries[-10:]
         last_10.reverse()
         target_name = os.path.join(self.target_dir, "atom.xml")
         utf8_open(target_name, "w").write(
@@ -424,7 +424,7 @@ class Weblog:
         # Planet plone + planet zope
         plone_entries = [
             entry
-            for entry in all
+            for entry in all_entries
             if (
                 "plone" in entry.tags
                 or "grok" in entry.tags
@@ -451,7 +451,7 @@ class Weblog:
         # Planet plone
         python_entries = [
             entry
-            for entry in all
+            for entry in all_entries
             if (
                 "plone" in entry.tags
                 or "grok" in entry.tags
@@ -479,7 +479,7 @@ class Weblog:
 
         django_entries = [
             entry
-            for entry in all
+            for entry in all_entries
             if "django" in entry.tags
             or "python" in entry.tags
             or "book" in entry.tags
@@ -501,11 +501,11 @@ class Weblog:
 
     def create_for_homepage(self):
         """Create html snippet for inclusion in homepage"""
-        self.all.sort()
-        self.all.reverse()
+        self.all_entries.sort()
+        self.all_entries.reverse()
         snippet_templ = jinja_env.get_template("homepagesnippet.html")
         # Main atom file
-        last_5 = self.all[-5:]
+        last_5 = self.all_entries[-5:]
         last_5.reverse()
         target_name = os.path.join(self.target_dir, "snippet.html")
         utf8_open(target_name, "w").write(
