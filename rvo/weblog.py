@@ -516,7 +516,7 @@ class Weblog:
         """Create html page with statistics"""
         statistic_templ = jinja_env.get_template("statistics.html")
         target_name = os.path.join(self.target_dir, "statistics.html")
-        years = [dict(name=year.name, number=len(year)) for year in self.years]
+        years = [{"name": year.name, "number": len(year)} for year in self.years]
 
         maximum = max([y["number"] for y in years])
         base = "http://chart.apis.google.com/chart?"
@@ -539,22 +539,22 @@ class Weblog:
                 if month_name in available_months:
                     month = available_months[month_name]
                     months.append(
-                        dict(
-                            name=" ".join([month.name, year.name]),
-                            month=month.name,
-                            year=year.name,
-                            number=len(month),
-                        )
+                        {
+                            "name": " ".join([month.name, year.name]),
+                            "month": month.name,
+                            "year": year.name,
+                            "number": len(month),
+                        }
                     )
                 else:
                     # Empty month...
                     months.append(
-                        dict(
-                            name="%s %s" % (month_name, year.name),
-                            month=month_name,
-                            year=year.name,
-                            number=0,
-                        )
+                        {
+                            "name": "%s %s" % (month_name, year.name),
+                            "month": month_name,
+                            "year": year.name,
+                            "number": 0,
+                        }
                     )
 
         average = float(months[0]["number"])
