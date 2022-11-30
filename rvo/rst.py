@@ -66,8 +66,8 @@ class SmugmugImage(Directive):
             photo_id = parts[2]
             if "#" in photo_id:
                 photo_id = photo_id.split("#")[0]
-            image_url = "%s/photos/%s-M.jpg" % (SMUGMUG, photo_id)
-            lightbox = "%s/gallery/%s/1/#%s-A-LB" % (SMUGMUG, gallery_id, photo_id)
+            image_url = "{}/photos/{}-M.jpg".format(SMUGMUG, photo_id)
+            lightbox = "{}/gallery/{}/1/#{}-A-LB".format(SMUGMUG, gallery_id, photo_id)
         else:
             # New style
             if "A-LB" in reference:
@@ -77,7 +77,7 @@ class SmugmugImage(Directive):
             else:
                 lightbox = reference + "-A-LB"
                 photo_id = reference.split("/")[-1]
-            image_url = "%s/photos/%s-M.jpg" % (SMUGMUG, photo_id)
+            image_url = "{}/photos/{}-M.jpg".format(SMUGMUG, photo_id)
 
         self.options["uri"] = image_url
         image_node = nodes.image(rawsource=self.block_text, **self.options)

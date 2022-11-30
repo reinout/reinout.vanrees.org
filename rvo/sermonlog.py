@@ -237,17 +237,17 @@ class Sermon:
     @property
     def full_link(self):
         """Return link from the sermonlog homepage."""
-        return "%s: %s <%s/%s.txt>" % (self.datum, self.title, self.year, self.name)
+        return "{}: {} <{}/{}.txt>".format(self.datum, self.title, self.year, self.name)
 
     @property
     def tag_link(self):
         """Return link from a tag/church/whatever subdirectory."""
-        return "%s: %s <../%s/%s.txt>" % (self.datum, self.title, self.year, self.name)
+        return "{}: {} <../{}/{}.txt>".format(self.datum, self.title, self.year, self.name)
 
     @property
     def year_link(self):
         """Return link from the year index page."""
-        return "%s: %s <%s.txt>" % (self.datum, self.title, self.name)
+        return "{}: {} <{}.txt>".format(self.datum, self.title, self.name)
 
 
 def main():

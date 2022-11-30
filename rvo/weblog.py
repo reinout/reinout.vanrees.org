@@ -130,7 +130,7 @@ class Month(Bucket):
         assert parts[-1] == self.name
         year = parts[-2]
         month = datetime.date(2000, int(self.name), 1).strftime("%B")
-        return "%s %s" % (month, year)
+        return "{} {}".format(month, year)
 
     def create_files(self):
         self.create_file()
@@ -150,7 +150,7 @@ class Day(Bucket):
         assert parts[-1] == self.name
         month = parts[-2]
         year = parts[-3]
-        return "%s-%s-%s" % (year, month, self.name)
+        return "{}-{}-{}".format(year, month, self.name)
 
 
 @total_ordering
@@ -189,7 +189,7 @@ class Tag(Bucket):
         for item in self.items:
             link = item.filename.replace(self.dir, "")
             link = link.lstrip("/")
-            result.append("    %s %s <../%s>" % (item.ymd, item.title, link))
+            result.append("    {} {} <../{}>".format(item.ymd, item.title, link))
         return result
 
 
@@ -240,7 +240,7 @@ class Entry:
         day = parts[-2]
         month = parts[-3]
         year = parts[-4]
-        return "%s-%s-%s" % (year, month, day)
+        return "{}-{}-{}".format(year, month, day)
 
     def assign_to_tags(self, tag_dict, weblogdir):
         """Append ourself to tags"""
@@ -355,7 +355,7 @@ class Weblog:
         tags = list(self.tags.values())
         tags.sort(reverse=True)
         for tag in tags:
-            content.append("    %s (%s) <%s.txt>" % (tag.name, tag.size, tag.name))
+            content.append("    {} ({}) <{}.txt>".format(tag.name, tag.size, tag.name))
         content.append("")
         filename = os.path.join(self.weblogdir, "tags/index.txt")
         conditional_write(filename, "\n".join(content))
@@ -369,7 +369,7 @@ class Weblog:
             parts = entry.filename.split("/")
             link = "/".join(parts[-4:])
             link = link.replace(".txt", ".html")
-            header = "`%s <%s>`_" % (entry.title, link)
+            header = "`{} <{}>`_".format(entry.title, link)
             result.append(header)
             result.append("=" * len(header))
             result.append("")
@@ -550,7 +550,7 @@ class Weblog:
                     # Empty month...
                     months.append(
                         {
-                            "name": "%s %s" % (month_name, year.name),
+                            "name": "{} {}".format(month_name, year.name),
                             "month": month_name,
                             "year": year.name,
                             "number": 0,
@@ -572,7 +572,7 @@ class Weblog:
         base = "http://chart.apis.google.com/chart?"
         size = "chs=600x300"
         colors = "chco=BBBBFF,4444FF,BBBBBB"
-        data = "chd=t:%s|%s|%s" % (
+        data = "chd=t:{}|{}|{}".format(
             ",".join([str(m["number"]) for m in months]),
             ",".join([str(round(m["average"])) for m in months]),
             ",".join([str(global_average) for m in months]),
@@ -593,7 +593,7 @@ class Weblog:
             x2.append(months[index]["year"])
         x1 = "|".join(x1)
         x2 = "|".join(x2)
-        axis_val = "chxl=0:|%s|1:|%s|2:|0|%s" % (x1, x2, maximum)
+        axis_val = "chxl=0:|{}|1:|{}|2:|0|{}".format(x1, x2, maximum)
         monthgraph = base + "&amp;".join(
             [size, colors, data, maxmin, type_, linestyle, legend, axis_def, axis_val]
         )
