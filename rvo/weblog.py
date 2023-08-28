@@ -520,7 +520,7 @@ class Weblog:
 
         maximum = max([y["number"] for y in years])
         base = "http://chart.apis.google.com/chart?"
-        size = "chs=600x200"
+        size = "chs=700x200"
         colors = "chco=4444FF"
         data = "chd=t:%s" % ",".join([str(y["number"]) for y in years])
         maxmin = "chds=0,%d" % maximum
@@ -570,7 +570,7 @@ class Weblog:
         global_average = sum([month["number"] for month in months])
         global_average = global_average / len(months)
         base = "http://chart.apis.google.com/chart?"
-        size = "chs=600x300"
+        size = "chs=700x300"
         colors = "chco=BBBBFF,4444FF,BBBBBB"
         data = "chd=t:{}|{}|{}".format(
             ",".join([str(m["number"]) for m in months]),
