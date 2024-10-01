@@ -43,7 +43,6 @@ class RootTagLinks(TagLinks):
 
 
 class SmugmugImage(Directive):
-
     required_arguments = 1
     optional_arguments = 0
     final_argument_whitespace = True
@@ -66,8 +65,8 @@ class SmugmugImage(Directive):
             photo_id = parts[2]
             if "#" in photo_id:
                 photo_id = photo_id.split("#")[0]
-            image_url = "{}/photos/{}-M.jpg".format(SMUGMUG, photo_id)
-            lightbox = "{}/gallery/{}/1/#{}-A-LB".format(SMUGMUG, gallery_id, photo_id)
+            image_url = f"{SMUGMUG}/photos/{photo_id}-M.jpg"
+            lightbox = f"{SMUGMUG}/gallery/{gallery_id}/1/#{photo_id}-A-LB"
         else:
             # New style
             if "A-LB" in reference:
@@ -77,7 +76,7 @@ class SmugmugImage(Directive):
             else:
                 lightbox = reference + "-A-LB"
                 photo_id = reference.split("/")[-1]
-            image_url = "{}/photos/{}-M.jpg".format(SMUGMUG, photo_id)
+            image_url = f"{SMUGMUG}/photos/{photo_id}-M.jpg"
 
         self.options["uri"] = image_url
         image_node = nodes.image(rawsource=self.block_text, **self.options)

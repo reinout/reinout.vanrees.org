@@ -1,4 +1,5 @@
 """Script to create my /preken overview"""
+
 import collections
 import datetime
 import logging
@@ -237,19 +238,17 @@ class Sermon:
     @property
     def full_link(self):
         """Return link from the sermonlog homepage."""
-        return "{}: {} <{}/{}.txt>".format(self.datum, self.title, self.year, self.name)
+        return f"{self.datum}: {self.title} <{self.year}/{self.name}.txt>"
 
     @property
     def tag_link(self):
         """Return link from a tag/church/whatever subdirectory."""
-        return "{}: {} <../{}/{}.txt>".format(
-            self.datum, self.title, self.year, self.name
-        )
+        return f"{self.datum}: {self.title} <../{self.year}/{self.name}.txt>"
 
     @property
     def year_link(self):
         """Return link from the year index page."""
-        return "{}: {} <{}.txt>".format(self.datum, self.title, self.name)
+        return f"{self.datum}: {self.title} <{self.name}.txt>"
 
 
 def main():
