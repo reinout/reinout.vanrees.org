@@ -82,7 +82,7 @@ class Bucket:
         """Return link block at the start of the page"""
         result = []
         result.append(".. toctree::")
-        result.append("    :maxdepth: %s" % self.tocdepth)
+        result.append(f"    :maxdepth: {self.tocdepth}")
         result.append("")
         if self.sort_entries:
             self.items.sort()
@@ -161,13 +161,13 @@ class Tag(Bucket):
 
     @property
     def filename(self):
-        return os.path.join(self.dir, "tags/%s.txt" % self.name)
+        return os.path.join(self.dir, f"tags/{self.name}.txt")
 
     def create_file(self):
         if not os.path.exists(self.filename):
             # I sometimes make a mistake with a tag name and reverting it is a
             # bit of a pain. So I want a warning when I create it.
-            print("Tag %s doesn't exist yet." % self.name)
+            print(f"Tag {self.name} doesn't exist yet.")
             answer = input("Create it? (y/N)")
             if answer != "y":
                 sys.exit(1)
@@ -183,7 +183,7 @@ class Tag(Bucket):
         """Return link block at the start of the page"""
         result = []
         result.append(".. toctree::")
-        result.append("    :maxdepth: %s" % self.tocdepth)
+        result.append(f"    :maxdepth: {self.tocdepth}")
         result.append("")
         self.items.sort()
         for item in self.items:
@@ -522,7 +522,7 @@ class Weblog:
         base = "http://chart.apis.google.com/chart?"
         size = "chs=700x200"
         colors = "chco=4444FF"
-        data = "chd=t:%s" % ",".join([str(y["number"]) for y in years])
+        data = "chd=t:{}".format(",".join([str(y["number"]) for y in years]))
         maxmin = "chds=0,%d" % maximum
         type_ = "cht=bvg"
         axis_def = "chxt=x,y"

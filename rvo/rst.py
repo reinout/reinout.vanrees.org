@@ -34,7 +34,7 @@ class TagLinks(Directive):
             tag_node = nodes.reference(refuri=link, text=tag)
             result += tag_node
             if not count == len(tags):
-                result += nodes.inline(text="%s " % self.separator)
+                result += nodes.inline(text=f"{self.separator} ")
         return [result]
 
 

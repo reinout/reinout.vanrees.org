@@ -104,7 +104,7 @@ class Sermonlog:
         content.append("    :maxdepth: 1")
         content.append("")
         for sermon in self.recent_ten():
-            content.append("    %s" % sermon.full_link)
+            content.append(f"    {sermon.full_link}")
         content.append("")
         content.append("Jaren")
         content.append("-----")
@@ -113,7 +113,7 @@ class Sermonlog:
         content.append("    :maxdepth: 1")
         content.append("")
         for year in sorted(self.years.keys()):
-            content.append("    %s/index" % year)
+            content.append(f"    {year}/index")
         content.append("")
         for info_type in INFO_TYPES:
             if info_type in ["datum", "toegevoegd", "tekst"]:
@@ -129,8 +129,7 @@ class Sermonlog:
             content.append("")
             for info_item in sorted_by_size(info_items):
                 content.append(
-                    "    %s (%s) <%s/%s.txt>"
-                    % (info_item, len(info_items[info_item]), dirname, info_item)
+                    f"    {info_item} ({len(info_items[info_item])}) <{dirname}/{info_item}.txt>"
                 )
             content.append("")
         conditional_write(total_index, "\n".join(content))
@@ -162,7 +161,7 @@ class Sermonlog:
                 sermons = info_items[info_item]
                 sermons.sort()
                 for sermon in sermons:
-                    content.append("    %s" % sermon.tag_link)
+                    content.append(f"    {sermon.tag_link}")
                 content.append("")
                 filename = os.path.join(
                     self.sermonlogdir, INFO_TYPES[info_type].lower(), info_item + ".txt"
@@ -194,7 +193,7 @@ class Sermon:
     def extract_info(self):
         for info_type in INFO_TYPES:
             setattr(self, info_type, [])
-            tagname = ":%s:" % info_type
+            tagname = f":{info_type}:"
             for line in self.lines:
                 if tagname in line:
                     info = line.replace(tagname, "")
@@ -222,7 +221,7 @@ class Sermon:
         for index, line in enumerate(self.lines):
             if ":datum:" in line:
                 extra_index = index
-        extra = "   :toegevoegd: %s" % added_on
+        extra = f"   :toegevoegd: {added_on}"
         if extra_index is None:
             logger.critical(
                 ":datum: not found in %s when adding 'toegevoegd' tag.", self.filename
