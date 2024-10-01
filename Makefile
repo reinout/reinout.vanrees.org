@@ -1,7 +1,7 @@
 install: install_symlinks install_python
 
 
-install_symlinks: docs/copyover docs/source	rvo/templates/layout.html
+install_symlinks: docs/copyover docs/source rvo/templates/layout.html
 
 docs/copyover:
 	ln -s ~/zelf/websitecontent/copyover docs/copyover
@@ -14,7 +14,7 @@ rvo/templates/layout.html:
 
 
 install_python:
-	pipenv install -e .
+	uv sync
 	mkdir -p var/log
 
 

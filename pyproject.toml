@@ -1,10 +1,33 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
+[project]
+name = "reinout-vanrees-org"
+version = "0.1.0"
+description = "Stuff for my website"
+readme = "README.rst"
+requires-python = ">=3.12"
+authors = [
+    {name = "Reinout van Rees", email = "reinout@vanrees.org"},
+]
+dependencies = [
+    "jinja2",
+    "sphinx",
+    "docutils",
+]
+
+[tool.setuptools]
+packages = ["rvo"]
+
+[project.scripts]
+create-weblog-pages = "rvo.weblog:main"
+create-sermonlog = "rvo.sermonlog:main"
+create-homepage = "rvo.homepage:main"
+create-sitemap = "rvo.sitemap:main"
 
 [tool.ruff]
-line-length = 88
-select = ["E", "F", "I", "U", "N", "ERA", "C", "B", "A", "M001"]
-# Interesting: "D", for docstrings
-# src = ["setup.py", "rvo/"]
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "I", "UP", "C901"]
