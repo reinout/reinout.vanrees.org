@@ -10,3 +10,4 @@ rvo.egg-info/
 .installed.cfg
 buildout.cfg
 .DS_Store
+/reinout_vanrees_org.egg-info/
