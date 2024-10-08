@@ -15,6 +15,7 @@ dependencies = [
     "jinja2",
     "sphinx",
     "docutils",
+    "tomlkit",
 ]
 
 [tool.setuptools]
