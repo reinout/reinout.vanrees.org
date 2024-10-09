@@ -5,9 +5,13 @@ import tomlkit
 
 METADATA_DIR = Path("~/zelf/websitecontent/videos").expanduser()
 OUTPUT_DIR = Path("~/zelf/reinout.vanrees.org/docs/build/html/videos").expanduser()
-TEMPLATE = """
+TEMPLATE = """\
+<!DOCTYPE html>
 <html>
-  <head><title>{title}</title></head>
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+  </head>
   <body>
     <h1>{title}</h1>
     <a href="{youtube}">View video on youtube</a>
@@ -22,7 +26,7 @@ for year_dir in METADATA_DIR.glob("????"):
     if not output_dir.exists():
         output_dir.mkdir()
     for metadata_file in year_dir.glob("*.toml"):
-        metadata = tomlkit.load(metadata_file.open())
+        metadata = tomlkit.loads(metadata_file.read_text())
         output_filename = metadata_file.stem + ".html"
         output = TEMPLATE.format(
             title=metadata.get("title"),
