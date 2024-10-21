@@ -1,7 +1,7 @@
 # Work in progress: small temp hacky file.
 from pathlib import Path
-import tomlkit
 
+import tomlkit
 
 METADATA_DIR = Path("~/zelf/websitecontent/videos").expanduser()
 OUTPUT_DIR = Path("~/zelf/reinout.vanrees.org/docs/build/html/videos").expanduser()
