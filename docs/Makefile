@@ -36,6 +36,7 @@ html:
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	uv run create-homepage
 	uv run create-sitemap
+	uv run create-videos
 	rsync -rcv copyover/* build/html/
 
 copy:

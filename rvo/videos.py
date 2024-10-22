@@ -1,7 +1,10 @@
 # Work in progress: small temp hacky file.
 from pathlib import Path
 import tomlkit
+import logging
+from rvo import utils
 
+logger = logging.getLogger(__name__)
 
 METADATA_DIR = Path("~/zelf/websitecontent/videos").expanduser()
 OUTPUT_DIR = Path("~/zelf/reinout.vanrees.org/docs/build/html/videos").expanduser()
@@ -20,18 +23,24 @@ TEMPLATE = """\
 """
 
 
-for year_dir in METADATA_DIR.glob("????"):
-    year = year_dir.name
-    output_dir = OUTPUT_DIR / year
-    if not output_dir.exists():
-        output_dir.mkdir()
-    for metadata_file in year_dir.glob("*.toml"):
-        metadata = tomlkit.loads(metadata_file.read_text())
-        output_filename = metadata_file.stem + ".html"
-        output = TEMPLATE.format(
-            title=metadata.get("title"),
-            youtube=metadata.get("youtube"),
-        )
-        output_file = output_dir / output_filename
-        output_file.write_text(output)
-        print(f"Wrote {output_file}")
+def main():
+    logging.basicConfig(level=logging.INFO)
+    for year_dir in METADATA_DIR.glob("????"):
+        year = year_dir.name
+        output_dir = OUTPUT_DIR / year
+        if not output_dir.exists():
+            output_dir.mkdir()
+        for metadata_file in year_dir.glob("*.toml"):
+            metadata = tomlkit.loads(metadata_file.read_text())
+            output_filename = metadata_file.stem + ".html"
+            output = TEMPLATE.format(
+                title=metadata.get("title"),
+                youtube=metadata.get("youtube"),
+            )
+            output_file = output_dir / output_filename
+            utils.write_if_changed(output_file, output)
+            # Log remote url
+
+
+if __name__ == "__main__":
+    main()
