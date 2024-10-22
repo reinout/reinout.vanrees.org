@@ -38,8 +38,10 @@ def main():
                 youtube=metadata.get("youtube"),
             )
             output_file = output_dir / output_filename
-            utils.write_if_changed(output_file, output)
-            # Log remote url
+            written = utils.write_if_changed(output_file, output)
+            if written:
+                # Log remote url.
+                print(f"https://reinout.vanrees.org/videos/{year}/{output_filename}")
 
 
 if __name__ == "__main__":
