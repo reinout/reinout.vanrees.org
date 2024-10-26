@@ -16,6 +16,8 @@ dependencies = [
     "sphinx",
     "docutils",
     "tomlkit",
+    "myst-parser>=4.0.0",
+    "linkify-it-py>=2.0.3",
 ]
 
 [tool.setuptools]
