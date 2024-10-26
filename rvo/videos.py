@@ -1,7 +1,9 @@
 # Work in progress: small temp hacky file.
-from pathlib import Path
-import tomlkit
 import logging
+from pathlib import Path
+
+import tomlkit
+
 from rvo import utils
 
 logger = logging.getLogger(__name__)
