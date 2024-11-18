@@ -1,6 +1,9 @@
 # Makefile for Sphinx documentation
 #
 
+# Exit upon error
+.SHELLFLAGS = -e
+
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = uv run sphinx-build
@@ -33,10 +36,10 @@ html:
 	mkdir -p build/html/weblog
 	uv run create-weblog-pages .
 	uv run create-sermonlog source/preken
+	uv run create-videos
 	$(SPHINXBUILD) -b html $(ALLSPHINXOPTS) build/html
 	uv run create-homepage
 	uv run create-sitemap
-	uv run create-videos
 	rsync -rcv copyover/* build/html/
 
 copy:
