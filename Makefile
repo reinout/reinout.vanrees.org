@@ -1,3 +1,6 @@
+# Exit upon error
+.SHELLFLAGS = -e
+
 install: install_symlinks install_python
 
 
