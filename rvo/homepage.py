@@ -38,7 +38,14 @@ class Homepage:
     @property
     def content(self):
         """Return rendered template, filled with content"""
-        return self.template.render(weblogsnippet=self.weblogsnippet, pathto=pathto)
+        breadcrumbs = [{"title": "Home", "url": "/"}]
+        breadcrumbs_last = "Yes, really the homepage"
+        return self.template.render(
+            weblogsnippet=self.weblogsnippet,
+            pathto=pathto,
+            breadcrumbs=breadcrumbs,
+            breadcrumbs_last=breadcrumbs_last,
+        )
 
     @property
     def weblogsnippet(self):
