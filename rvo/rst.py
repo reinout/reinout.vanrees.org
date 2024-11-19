@@ -157,27 +157,22 @@ def breadcrumbs(app, pagename, templatename, context, doctree):
     context["breadcrumbs_last"] = context["title"]
 
 
-def _is_weblog_entry(pagename):
-    """Return True if the page is a weblog entry."""
+def _is_inside_weblog(pagename):
+    """Return True if the page is inside the weblog."""
     if not pagename:
         return
     parts = pagename.split("/")
-    if not parts[0] == "weblog":
-        return
-    if not len(parts) == 5:
-        return
-    if parts[-1] == "index":
-        return
-    return True
+    if parts[0] == "weblog":
+        return True
 
 
-def enable_disqus(app, pagename, templatename, context, doctree):
-    """Inject whether to enable disqus into the context.
+def inside_weblog(app, pagename, templatename, context, doctree):
+    """Inject whether to show weblog atom linx in sidebar.
 
     It is registered for the ``html-page-context`` event.
 
     """
-    context["enable_disqus"] = _is_weblog_entry(pagename)
+    context["inside_weblog"] = _is_inside_weblog(pagename)
 
 
 def setup(app):
@@ -188,7 +183,7 @@ def setup(app):
 
     app.add_directive("preek", SermonInfo)
     app.connect("html-page-context", breadcrumbs)
-    app.connect("html-page-context", enable_disqus)
+    app.connect("html-page-context", inside_weblog)
 
 
 def setup_for_plain_docutils():
