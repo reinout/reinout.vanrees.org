@@ -11,3 +11,4 @@ rvo.egg-info/
 buildout.cfg
 .DS_Store
 /reinout_vanrees_org.egg-info/
+/node_modules/
