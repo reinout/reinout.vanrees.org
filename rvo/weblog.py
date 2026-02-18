@@ -523,11 +523,11 @@ class Weblog:
         size = "chs=700x200"
         colors = "chco=4444FF"
         data = "chd=t:{}".format(",".join([str(y["number"]) for y in years]))
-        maxmin = "chds=0,%d" % maximum
+        maxmin = f"chds=0,{int(maximum)}"
         type_ = "cht=bvg"
         axis_def = "chxt=x,y"
         x = "|".join([str(y["name"]) for y in years])
-        axis_val = "chxl=0:|%s|1:|0|%d" % (x, maximum)
+        axis_val = f"chxl=0:|{x}|1:|0|{int(maximum)}"
         yeargraph = base + "&amp;".join(
             [size, colors, data, maxmin, type_, axis_def, axis_val]
         )
@@ -577,7 +577,7 @@ class Weblog:
             ",".join([str(round(m["average"])) for m in months]),
             ",".join([str(global_average) for m in months]),
         )
-        maxmin = "chds=0,%d,0,%d,0,%d" % (maximum, maximum, maximum)
+        maxmin = f"chds=0,{int(maximum)},0,{int(maximum)},0,{int(maximum)}"
         linestyle = "chls=1,1,0|5,1,0|1,1,0"
         type_ = "cht=lc"
         legend = "chdl=posts+per+month|moving+average|average"
