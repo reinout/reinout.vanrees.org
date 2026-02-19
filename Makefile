@@ -21,7 +21,7 @@ install_python:
 	uv sync
 	mkdir -p var/log
 
-install_npm: node_modules/.bin/tailwindcss
+install_npm:
 	npm install .
 
 style: docs/source/_static/vanrees.css
