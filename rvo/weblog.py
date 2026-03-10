@@ -35,6 +35,11 @@ def conditional_write(filename, new):
         print(".")
 
 
+def latest_update(entries):
+    dates = sorted([entry.last_modified for entry in entries])
+    return dates[-1]
+
+
 class Bucket:
     """A bucket of entries (tag/day) or other buckets (year/month)"""
 
@@ -419,6 +424,7 @@ class Weblog:
                 subtitle=self.subtitle,
                 feedfile="atom.xml",
                 entries=last_10,
+                updated=latest_update(last_10),
             )
         )
         # Planet plone + planet zope
@@ -445,6 +451,7 @@ class Weblog:
                     feedfile="plonefeed.xml",
                     subtitle=self.subtitle,
                     entries=plone_entries,
+                    updated=latest_update(plone_entries),
                 )
             )
         # planet python
@@ -474,6 +481,7 @@ class Weblog:
                     subtitle=self.subtitle,
                     feedfile="pythonfeed.xml",
                     entries=python_entries,
+                    updated=latest_update(python_entries),
                 )
             )
 
@@ -496,6 +504,7 @@ class Weblog:
                     subtitle=self.subtitle,
                     feedfile="djangofeed.xml",
                     entries=django_entries,
+                    updated=latest_update(django_entries),
                 )
             )
 
