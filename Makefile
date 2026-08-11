@@ -3,6 +3,11 @@
 
 install: install_symlinks install_python install_npm style
 
+upgrade:
+	prek autoupdate
+	npm update
+	uv lock --upgrade
+
 clean:
 	rm -rf node_modules .venv docs/build
 
